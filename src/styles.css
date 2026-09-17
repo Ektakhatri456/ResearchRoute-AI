@@ -1,0 +1,148 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ResearchRoute AI — classic reading-room design system. */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 1px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --font-mono: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Fira Sans", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-grid: var(--grid);
+}
+
+:root {
+  --radius: 0.45rem;
+  --background: oklch(0.935 0.022 105);
+  --foreground: oklch(0.24 0.035 155);
+  --surface: oklch(0.975 0.018 98);
+  --surface-2: oklch(0.935 0.028 105);
+  --card: oklch(0.985 0.014 98);
+  --card-foreground: oklch(0.24 0.035 155);
+  --popover: oklch(0.985 0.014 98);
+  --popover-foreground: oklch(0.24 0.035 155);
+  --primary: oklch(0.38 0.09 158);
+  --primary-foreground: oklch(0.975 0.018 98);
+  --secondary: oklch(0.88 0.04 104);
+  --secondary-foreground: oklch(0.28 0.05 156);
+  --muted: oklch(0.92 0.025 103);
+  --muted-foreground: oklch(0.47 0.035 145);
+  --accent: oklch(0.7 0.105 88);
+  --accent-foreground: oklch(0.25 0.04 95);
+  --destructive: oklch(0.6 0.15 25);
+  --destructive-foreground: oklch(0.99 0.005 160);
+  --warning: oklch(0.62 0.12 75);
+  --success: oklch(0.46 0.1 153);
+  --border: oklch(0.79 0.035 104);
+  --input: oklch(0.78 0.035 104);
+  --ring: oklch(0.54 0.09 158);
+  --grid: oklch(0.86 0.03 104);
+  --glow-primary: 0 0 0 3px color-mix(in oklab, var(--primary) 16%, transparent);
+  --shadow-panel: 0 24px 70px -44px oklch(0.22 0.05 155 / 0.62);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    min-width: 320px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+}
+
+@utility panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility label-mono {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility glow-ring {
+  box-shadow: var(--glow-primary);
+}
+
+@utility scan-line {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--primary) 24%, transparent),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: scan 1.8s linear infinite;
+  }
+}
+
+
+@keyframes scan {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
