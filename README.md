@@ -37,8 +37,8 @@ RESEARCH_API_KEY=sk-your-key-here
 Optional:
 
 ```env
-RESEARCH_API_BASE=https://api.openai.com/v1
-RESEARCH_MODEL=gpt-4o-mini
+RESEARCH_API_BASE=https://generativelanguage.googleapis.com/v1beta/openai
+RESEARCH_MODEL=gemini-2.5-flash
 ```
 
 Works with OpenAI, Groq, OpenRouter, and other OpenAI-compatible providers.
